@@ -18,7 +18,6 @@
                     <div class="col-md-7">
                     <h1 class="font-weight-light mt-4 text-white">YorPage</h1>
                     <p class="lead text-white-50">Focus is the highest form of Meditation, Let's Start.</p>
-
                     </div>
                 </div>
                 </div>
@@ -30,13 +29,13 @@
           <div class="card card-signin my-5">
             <div class="card-body">
               <h5 class="card-title text-center">Sign In</h5>
-              <form class="form-signin">
+              <form class="form-signin" action ="/auth/login" method = "POST">
                 <div class="form-label-group">
-                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name = "email" required autofocus>
                   <label for="inputEmail">Email address</label>
                 </div>
                 <div class="form-label-group">
-                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" name = "password" required>
                   <label for="inputPassword">Password</label>
                 </div>
                   <div class="custom-control custom-checkbox mb-3">
@@ -44,14 +43,20 @@
                     <label class="custom-control-label" for="customCheck1">Remember password</label>
                   </div>
                   <button 
-                    class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in
+                    class="btn btn-lg btn-primary btn-block text-uppercase" id = "SignIn-btn" type="submit">Sign in
                   </button>
-                      <!--
+                  <!--
+                  <button 
+                    class="btn btn-lg btn-primary btn-block text-uppercase" id= "SignUp-btn" type="submit">Sign Up
+                  </button>
+                      
                       <hr class="my-4">
                       <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
                       <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
                       -->
-                </form>
+              </form>
+              <a class="d-block text-center mt-2 small" href="/auth/register">New User</a>
+
               </div>
             </div>
         </div>
@@ -68,9 +73,9 @@
             </div>
           </footer>
         </dev>
-    
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>   
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
 </body>
+<script src ="/loginPage.js"></script>
 </html>
 

@@ -64,5 +64,9 @@ function SetBreak(time)
 }
 
 document.getElementById("loginButton").onclick = function() {
-	location.href = "/login";
+	location.href = "/auth/login";
+}
+
+document.getElementById("logoutButton").onclick = function() {
+	location.href = "/auth/logout";
 }
