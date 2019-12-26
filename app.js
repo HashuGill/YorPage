@@ -1,8 +1,8 @@
 const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
-const userModel = require('./models/user');
-const app = express();
+
 app.set('views','views');
 app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended: false}));
@@ -26,8 +26,14 @@ app.use(
 
 app.use('/auth', authRoutes);
 
+//landing page
 app.get('/', (req, res) => {
-    res.render("index.ejs");
+    if(req.session.isLoggedIn){
+        res.render("index.ejs",{loginoutInnerHTMl : 'Logout'});
+    }
+    else{
+        res.render("index.ejs",{loginoutInnerHTMl : 'Login/Signup'});
+    } 
 });
 
 mongoose.connect(MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true }) //, useUnifiedTopology: true

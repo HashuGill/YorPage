@@ -62,11 +62,24 @@ function SetBreak(time)
     timer = setInterval(function () { getCountdown(target_date); }, 1000);
 
 }
+document.getElementById("loginoutButton").onclick = function() {
+	console.log('we are in here');
+	console.log(document.getElementById("loginoutButton").innerHTML)
 
-document.getElementById("loginButton").onclick = function() {
-	location.href = "/auth/login";
+	if (document.getElementById("loginoutButton").innerHTML== "Logout"){
+		location.href = "/auth/logout";
+	}
+	else{
+		location.href = "/auth/login";
+	}
 }
 
-document.getElementById("logoutButton").onclick = function() {
-	location.href = "/auth/logout";
-}
+// document.getElementById("logoutButton").onclick = function() {
+// 	document.getElementById("logoutButton").innerHTML= 'clicked';
+// 	location.href = "/auth/logout";
+// }
+
+// document.getElementById("loginButton").onclick = function() {
+// 	location.href = "/auth/login";
+// }
+
