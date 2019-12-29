@@ -27,7 +27,6 @@ function pad(n) {
 
 function stop(){
 	document.getElementById("myButton2").innerHTML = "Pomodoro";
-	console.log("we are here");
 	clearInterval(timer);
 }
 
