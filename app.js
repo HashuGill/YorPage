@@ -12,7 +12,6 @@ app.use(express.static(__dirname + '/public'));
 const session = require('express-session');
 const mongoose = require('mongoose');
 const mongodbStore = require('connect-mongodb-session')(session);
-
 const MONGO_URI = 'mongodb+srv://YorPage:hhAIvzxVuV6oDnpf@cluster0-nnom9.mongodb.net/YorPage?retryWrites=true&w=majority';
 const sessionStore = new mongodbStore({
     uri: MONGO_URI,
@@ -23,16 +22,16 @@ app.use(
     session({secret: 'some long string', store: sessionStore, resave: false, saveUninitialized: false})
     );
 
-
 app.use('/auth', authRoutes);
 
 //landing page
 app.get('/', (req, res) => {
     if(req.session.isLoggedIn){
-        res.render("index.ejs",{loginoutInnerHTMl : 'Logout'});
+        let titleString = req.session.name + "'s Page"
+        res.render("index.ejs",{loginoutInnerHTMl : 'Logout', title: titleString});
     }
     else{
-        res.render("index.ejs",{loginoutInnerHTMl : 'Login/Signup'});
+        res.render("index.ejs",{loginoutInnerHTMl : 'Login/Signup', title: "YorPage"});
     } 
 });
 

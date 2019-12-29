@@ -18,8 +18,6 @@ function getCountdown(target_date){
 	}
 	var minutes = pad( parseInt(seconds_left / 60) );
 	var seconds = pad( parseInt( seconds_left % 60 ) );
-	
-
 	// format countdown string + set tag value
 	countdown.innerHTML =  "<span>" + minutes + "</span><span>" + seconds + "</span>"; 
 }
@@ -31,7 +29,6 @@ function stop(){
 	document.getElementById("myButton2").innerHTML = "Pomodoro";
 	console.log("we are here");
 	clearInterval(timer);
-
 }
 
 
@@ -52,7 +49,6 @@ function pomodoro(){
   		if (time != null) {
     	play(time);
   		}
-		
 	}
 }
 function SetBreak(time)
@@ -63,8 +59,6 @@ function SetBreak(time)
 
 }
 document.getElementById("loginoutButton").onclick = function() {
-	console.log('we are in here');
-	console.log(document.getElementById("loginoutButton").innerHTML)
 
 	if (document.getElementById("loginoutButton").innerHTML== "Logout"){
 		location.href = "/auth/logout";

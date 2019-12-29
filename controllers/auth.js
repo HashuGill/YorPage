@@ -1,26 +1,20 @@
 const express = require('express');
 const userModel = require('../models/user');
 const bcrypt = require('bcrypt')
-const passport = require('passport');
-const initPassport = require('../passport-config');
 
-// initPassport(password, email => {
-//     return users.find(user => user.email === email)
-// })
 
 const app = express();
 app.use(express.urlencoded({extended: false}));  //find out more detail about this 
 
-//End point resulting in login page to render
+
+///login functionality
 exports.getLogin = (req, res, next) => {
     if(req.session.isLoggedIn == true){
         return res.redirect('/');
     }
     return res.render('loginPage');
 };
-
 exports.postLogin = (req,res,next) => {
-    //chekc for user and password in the db
     const emailInput = req.body.email;
     const passwordInput = req.body.password;
     userModel.findOne({email: emailInput})
@@ -31,19 +25,27 @@ exports.postLogin = (req,res,next) => {
         bcrypt.compare(passwordInput,emailfound.password)
         .then(same =>{
             if(same){
+                var userName;
+                var userEmail;
                 req.session.isLoggedIn = true;
                 userModel.findOne({email : emailInput})
                 .then(userfound => {
-                    req.session.user = userfound.user;
-                    req.session.email = userfound.email;
+                    userName = userfound.name;
+                    userEmail = userfound.email;
+                })
+                .then( rest => {
+                    req.session.email = userEmail;
+                    req.session.name= userName;
+                    return res.redirect('/')
                 })
                 .catch( err => {
                     console.log(err);
+                    return res.redirect('/auth/login')
                 });
-                req.session.email = emailInput;
-                return res.redirect('/')
             }
-            res.redirect('/auth/login')
+            else{
+            return res.redirect('/auth/login')
+            }
         })
         .catch( err => {
             console.log(err);
@@ -55,6 +57,9 @@ exports.postLogin = (req,res,next) => {
     });
 }
 
+
+
+///log out functionaility
 exports.postLogout = (req,res,next) => {
     req.session.destroy( (err) => {
         if(err){
@@ -64,16 +69,19 @@ exports.postLogout = (req,res,next) => {
     }); 
 };
 
+
+
+///sign up functionalilty 
 exports.getRegister = (req,res,next) => {
     res.render('registerPage');
 };
 
 exports.postRegister = (req,res,next) => {
-    const userInput = req.body.user;
+    const userInputRaw = req.body.user;
+    const userInput = userInputRaw.charAt(0).toUpperCase() + userInputRaw.substring(1);
     const emailInput = req.body.email;
     const passwordInput = req.body.password;
-    userModel.findOne({ email: emailInput}).then( user =>
-    {
+    userModel.findOne({ email: emailInput}).then( user =>{
         if(!user){
             return bcrypt.hash(passwordInput,14) //salt value of min 12 is recommended
             .then(securePassword => {
@@ -86,8 +94,7 @@ exports.postRegister = (req,res,next) => {
                 res.redirect('/auth/login');
             })
         }
-        else
-        {
+        else{
             //need to find a way to handle if email already exists
             //error message
             return res.redirect('/auth/register');
@@ -96,8 +103,6 @@ exports.postRegister = (req,res,next) => {
     .catch( err => {
         console.log(err);
     });
-    
-
 };
 //End point handles login requests 
 // exports.postLogin = async (req,res) => {
