@@ -50,6 +50,7 @@ function pomodoro(){
   		}
 	}
 }
+
 function SetBreak(time)
 {
 	target_date = new Date().getTime() + (1000*3600*time/60);
@@ -57,6 +58,7 @@ function SetBreak(time)
     timer = setInterval(function () { getCountdown(target_date); }, 1000);
 
 }
+
 document.getElementById("loginoutButton").onclick = function() {
 
 	if (document.getElementById("loginoutButton").innerHTML== "Logout"){
@@ -67,3 +69,4 @@ document.getElementById("loginoutButton").onclick = function() {
 	}
 }
 
+//to do list implementation
