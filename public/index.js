@@ -67,12 +67,3 @@ document.getElementById("loginoutButton").onclick = function() {
 	}
 }
 
-// document.getElementById("logoutButton").onclick = function() {
-// 	document.getElementById("logoutButton").innerHTML= 'clicked';
-// 	location.href = "/auth/logout";
-// }
-
-// document.getElementById("loginButton").onclick = function() {
-// 	location.href = "/auth/login";
-// }
-
