@@ -11,7 +11,7 @@
   "author": "Hashu Gill",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
     "connect-mongodb-session": "^2.2.0",
